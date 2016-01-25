@@ -1,25 +1,31 @@
+import java.applet.Applet;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import javax.swing.JTextPane;
+import javax.swing.JLabel;
 
-		public class ShowFonts
+		public class ShowFonts extends Applet
 		{
-		   public static void main ( String [] args )
+			public ShowFonts() {
+				//create variables
+				
+				//sample output
+				JTextPane output = new JTextPane();
+				add(output);
+				output.setBounds(6, 22, 500, 500);
+				//font family, style, size
+				output.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+				//background & foreground color
+				output.setBackground(new Color(240, 248, 255));
+				output.setForeground(new Color(0, 0, 0));
+				//set outputted text
+				output.setText("Sample text");
+			}
 		   
-		   //code for foreground, background colors and fonts
-		label = new JTextPane();
-		label.setBounds(6, 22, 357, 207);
-		label.setFont(new Font("Century Gothic", Font.PLAIN, 15));
-		label.setBackground(new Color(240, 248, 255));
-		label.setForeground(new Color(0, 0, 0));
-		label.setEditable(false);
-		add(label);
-		
-		//display text
-		label.setText("What's your name?");
+			public static void main ( String [] args )
 		   
-		   //code to show fonts
+		   //code to show all available fonts
 		      {
 		      GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		      String[] names = ge.getAvailableFontFamilyNames();
