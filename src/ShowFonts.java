@@ -26,8 +26,15 @@ public class ShowFonts extends Applet
 		//create text area, set location in applet, display text
 		JTextArea output = new JTextArea();
 		add(output);
-		output.setBounds(38, 99, 344, 158);
+		output.setBounds(33, 67, 344, 158);
 		output.setText("SAMPLE OUTPUT");
+		
+		//create drop-down menu for bold/italics
+		JComboBox fontStyle = new JComboBox();
+		fontStyle.setBounds(199, 19, 103, 30);
+		add(fontStyle);
+		fontStyle.addItem("Bold");
+		fontStyle.addItem("Italic");
 	}
 		
 	public static void main ( String [] args )
@@ -47,5 +54,4 @@ public class ShowFonts extends Applet
       //WHAT'S THE ISSUE
       return names[];
      }
-	
 }
