@@ -1,8 +1,10 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.applet.Applet;
 
-public class ShowFonts extends Applet
+public class ShowFonts extends Applet implements ActionListener
 {
 	public ShowFonts() 
 	{
@@ -35,11 +37,22 @@ public class ShowFonts extends Applet
 		add(fontStyle);
 		fontStyle.addItem("Bold");
 		fontStyle.addItem("Italic");
+		
+		fontStyle.addActionListener(
+                new ActionListener()
+                {
+                    public void actionPerformed(ActionEvent e)
+                    {
+                        JComboBox fontStyle = (JComboBox)e.getSource();
+                        String style = (String)fontStyle.getSelectedItem();
+                        System.out.println(style);
+                    }
+                }
 	}
 		
 	public static void main ( String [] args )
 	{
-		
+		 
 	}
 	
 	public static String[] GetFonts()
