@@ -27,7 +27,19 @@ public class ShowFonts extends Applet
 		JTextArea output = new JTextArea();
 		add(output);
 		output.setBounds(33, 67, 344, 158);
-		output.setText("SAMPLE OUTPUT");
+		output.setText(
+				"The quick brown fox jumped over the lazy dog’s back. "
+				+ "Pack my box with five dozen liquor jugs. "
+				+ "Jackdaws love my big sphinx of quartz. "
+				+ "Mr. Jock, TV quiz PhD, bags few lynx. "
+				+ "abcdefghijklmnopqrstuvwxyz "
+				+ "ABCDEFGHIJKLMNOPQRSTUVWXYZ "
+				+ "01234567890 "
+				+ "€†™´¸¢©¤°÷½¼¾>¡¿«‘’<¯µ ·¬ªº¶±£\"»®§­¹²³ß×™¨¥" 
+				+ "ÀÁÂÃÄÅÆÇÈÉ ÊËÌÍÎÏÐÑÒÓÔ ÕÖØÙÚÛÜÝÞÿ"
+				+ "àáâãäåæçèé êëìíîïðñòóô õöøùúûüýþÿ"
+				+ "!\"#$%&\'()*+,-./:;<=>?@[\\^_z{|}~"
+				+ "uvw wW gq9 2z 5s il17|!j oO08 `\'\" ;:,. m nn rn {[()]}u\"");
 		
 		//create drop-down menu for bold/italics
 		JComboBox fontStyle = new JComboBox();
@@ -55,3 +67,4 @@ public class ShowFonts extends Applet
       return names[];
      }
 }
+
