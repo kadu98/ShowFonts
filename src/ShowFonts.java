@@ -28,19 +28,19 @@ public class ShowFonts extends Applet implements ActionListener
 		//create text area, set location in applet, display text
 		JTextArea output = new JTextArea();
 		add(output);
-		output.setBounds(33, 67, 344, 158);
+		output.setBounds(33, 67, 368, 203);
 		output.setText(
-				"The quick brown fox jumped over the lazy dog’s back. "
-				+ "Pack my box with five dozen liquor jugs. "
-				+ "Jackdaws love my big sphinx of quartz. "
-				+ "Mr. Jock, TV quiz PhD, bags few lynx. "
-				+ "abcdefghijklmnopqrstuvwxyz "
-				+ "ABCDEFGHIJKLMNOPQRSTUVWXYZ "
-				+ "01234567890 "
-				+ "€†™´¸¢©¤°÷½¼¾>¡¿«‘’<¯µ ·¬ªº¶±£\"»®§­¹²³ß×™¨¥" 
-				+ "ÀÁÂÃÄÅÆÇÈÉ ÊËÌÍÎÏÐÑÒÓÔ ÕÖØÙÚÛÜÝÞÿ"
-				+ "àáâãäåæçèé êëìíîïðñòóô õöøùúûüýþÿ"
-				+ "!\"#$%&\'()*+,-./:;<=>?@[\\^_z{|}~"
+				"The quick brown fox jumped over the lazy dog’s back. \n "
+				+ "Pack my box with five dozen liquor jugs. \n"
+				+ "Jackdaws love my big sphinx of quartz. \n"
+				+ "Mr. Jock, TV quiz PhD, bags few lynx. \n"
+				+ "abcdefghijklmnopqrstuvwxyz\n "
+				+ "ABCDEFGHIJKLMNOPQRSTUVWXYZ\n "
+				+ "01234567890 \n"
+				+ "€†™´¸¢©¤°÷½¼¾>¡¿«‘’<¯µ ·¬ªº¶±£\"»®§­¹²³ß×™¨¥\n" 
+				+ "ÀÁÂÃÄÅÆÇÈÉ ÊËÌÍÎÏÐÑÒÓÔ ÕÖØÙÚÛÜÝÞÿ\n"
+				+ "àáâãäåæçèé êëìíîïðñòóô õöøùúûüýþÿ\n"
+				+ "!\"#$%&\'()*+,-./:;<=>?@[\\^_z{|}~\n"
 				+ "uvw wW gq9 2z 5s il17|!j oO08 `\'\" ;:,. m nn rn {[()]}u\"");
 		
 		//create drop-down menu for bold/italics
@@ -50,7 +50,7 @@ public class ShowFonts extends Applet implements ActionListener
 		fontStyle.addItem("Bold");
 		fontStyle.addItem("Italic");
 		
-		fontStyle.addActionListener(
+		/*fontStyle.addActionListener(
                 new ActionListener()
                 {
                     public void actionPerformed(ActionEvent e)
@@ -60,6 +60,7 @@ public class ShowFonts extends Applet implements ActionListener
                         System.out.println(style);
                     }
                 }
+             */
 	}
 		
 	public static void main ( String [] args )
