@@ -10,7 +10,7 @@ public  class Frame extends JFrame{
   }
 
   public void addPanel(JPanel p){
-    p.setPreferredSize(new Dimension(500,400));
+    p.setPreferredSize(new Dimension(700,700));
     c.add(p);
   }
 
