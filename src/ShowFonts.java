@@ -3,9 +3,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.applet.Applet;
+import java.util.Arrays;
 
 public class ShowFonts extends JPanel implements ActionListener
 {
+	JTextArea output;
+	JComboBox fontStyle;
+	
 	public ShowFonts() 
 	{
 		//allows me to move components around
@@ -15,18 +19,18 @@ public class ShowFonts extends JPanel implements ActionListener
 		JComboBox fontFam = new JComboBox();
 		add(fontFam);
 		fontFam.setBounds(23, 19, 141, 30);
-		fontFam.addItem("test1");
-		fontFam.addItem("test2");
 		
-		/*add all fonts to font family drop-down menu
-		for ( int i=0; i<array.length; i++ )
+		//set array "fonts" to what function getfonts returns
+		String[] fonts=GetFonts();
+		
+		//add all fonts to font family drop-down menu
+		for ( int i=0; i<fonts.length; i++ )
 		{
-			fontFam.addItem( array[i]);
+			fontFam.addItem( fonts[i]);
 		}
-		*/
 		
 		//create text area, set location in applet, display text
-		JTextArea output = new JTextArea();
+		output = new JTextArea();
 		add(output);
 		output.setBounds(33, 67, 368, 203);
 		output.setText(
@@ -44,9 +48,11 @@ public class ShowFonts extends JPanel implements ActionListener
 				+ "uvw wW gq9 2z 5s il17|!j oO08 `\'\" ;:,. m nn rn {[()]}u\"");
 		
 		//create drop-down menu for bold/italics
-		JComboBox fontStyle = new JComboBox();
+		fontStyle = new JComboBox();
+		fontStyle.addActionListener(this);
 		fontStyle.setBounds(199, 19, 103, 30);
 		add(fontStyle);
+		fontStyle.addItem("None");
 		fontStyle.addItem("Bold");
 		fontStyle.addItem("Italic");
 	}
@@ -61,5 +67,32 @@ public class ShowFonts extends JPanel implements ActionListener
 	       }	    
       return names;
      }
+
+	@Override
+	public void actionPerformed(ActionEvent event)
+	{
+		if (fontStyle.getSelectedItem()=="None")
+		{
+			//get font in output and assign to variable "font"
+			Font font = output.getFont();  
+			//set font in output to bold
+			output.setFont(font.deriveFont(Font.PLAIN));
+		}
+		
+		if (fontStyle.getSelectedItem()=="Bold")
+		{
+			//get font in output and assign to variable "font"
+			Font font = output.getFont();  
+			//set font in output to bold
+			output.setFont(font.deriveFont(Font.BOLD));
+		}
+		if (fontStyle.getSelectedItem()=="Italic")
+		{
+			//get font in output and assign to variable "font"
+			Font font = output.getFont();  
+			//set font in output to italic
+			output.setFont(font.deriveFont(Font.ITALIC));
+		}
+	}
 }
 
