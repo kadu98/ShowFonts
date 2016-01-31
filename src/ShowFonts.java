@@ -10,7 +10,7 @@ public class ShowFonts extends JPanel implements ActionListener
 	JTextArea output;
 	JComboBox<String> fontStyle;
 	JComboBox<String> fontFam;
-	
+	JComboBox<String> fontColor;
 	public ShowFonts() 
 	{
 		//allows me to move components around
@@ -48,6 +48,18 @@ public class ShowFonts extends JPanel implements ActionListener
 		fontFam.addActionListener(this);
 		add(fontFam);
 		fontFam.setBounds(23, 19, 141, 30);
+		
+		//create drop-down menu for color
+		fontColor = new JComboBox<>();
+		fontColor.setBounds(350, 19, 141 ,30);
+		fontColor.addActionListener(this);
+		add(fontColor);
+		fontColor.addItem("Black");
+		fontColor.addItem("Red");
+		fontColor.addItem("Blue");
+		fontColor.addItem("Green");
+		
+		
 		
 		//set array "fonts" to what function getfonts returns
 		String[] fonts=GetFonts();
@@ -109,6 +121,16 @@ public class ShowFonts extends JPanel implements ActionListener
 			output.setFont(font.deriveFont(Font.ITALIC));
 		}
 		}
+		if(event.getSource() == fontColor){
+			String whatColor = fontColor.getItemAt(fontColor.getSelectedIndex());
+			
+			int a = 255;
+			int b = 0;
+			int c = 0;
+			
+			output.setForeground(new Color(a, b, c));
+			}
+		}
 	}
-}
+
 
