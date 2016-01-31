@@ -2,11 +2,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.applet.Applet;
 import java.util.Arrays;
 
 public class ShowFonts extends JPanel implements ActionListener
 {
+	//creates field variables 
 	JTextArea output;
 	JComboBox<String> fontStyle;
 	JComboBox<String> fontFam;
@@ -16,10 +18,12 @@ public class ShowFonts extends JPanel implements ActionListener
 		//allows me to move components around
 		setLayout(null);
 		
-		//create text area, set location in applet, display text
+		//create text area, set location of text area in frame, display text
 		output = new JTextArea();
 		add(output);
 		output.setBounds(33, 67, 460, 337);
+		//border
+		output.setBorder(new TitledBorder("Try out different fonts & colors"));
 		output.setText(
 				"The quick brown fox jumped over the lazy dog’s back. \n "
 				+ "Pack my box with five dozen liquor jugs. \n"
@@ -36,6 +40,7 @@ public class ShowFonts extends JPanel implements ActionListener
 		
 		//create drop-down menu for bold/italics
 		fontStyle = new JComboBox<>();
+		//connect fontStyle drop down to "this" action listener (action listener in outer class)
 		fontStyle.addActionListener(this);
 		fontStyle.setBounds(199, 19, 103, 30);
 		add(fontStyle);
@@ -45,6 +50,7 @@ public class ShowFonts extends JPanel implements ActionListener
 		
 		//create drop-down menu for font families, set location in applet
 		fontFam = new JComboBox<>();
+		//connect fontfam drop down to "this" action listener
 		fontFam.addActionListener(this);
 		add(fontFam);
 		fontFam.setBounds(23, 19, 141, 30);
@@ -59,8 +65,6 @@ public class ShowFonts extends JPanel implements ActionListener
 		fontColor.addItem("Blue");
 		fontColor.addItem("Green");
 		
-		
-		
 		//set array "fonts" to what function getfonts returns
 		String[] fonts=GetFonts();
 		
@@ -71,6 +75,7 @@ public class ShowFonts extends JPanel implements ActionListener
 		}
 	}
 	
+	//JD's method to get all fonts
 	public static String[] GetFonts()
 	{
       GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -83,13 +88,14 @@ public class ShowFonts extends JPanel implements ActionListener
      }
 
 	@Override
+	//when an action is performed, the following will be triggered
 	public void actionPerformed(ActionEvent event)
 	{
-		//if the object that triggers the action is fontFam/if fontFam performs action
+		//if the object that triggers the action is fontFam/if fontFam performs the action
 		if(event.getSource() == fontFam){
 			//gets the item at the selected item
 			String fontName = fontFam.getItemAt(fontFam.getSelectedIndex());
-			//get the current font of the JTextArea output, and get the style of the current font 
+			//get the current font of the JTextArea output, then get the style of the current font 
 			int currentStyle = output.getFont().getStyle();
 			//set font size 
 			int size = 14;
@@ -102,7 +108,7 @@ public class ShowFonts extends JPanel implements ActionListener
 		{
 			//get font in output and assign to variable "font"
 			Font font = output.getFont();  
-			//set font in output to bold
+			//set font in output to plain
 			output.setFont(font.deriveFont(Font.PLAIN));
 		}
 		

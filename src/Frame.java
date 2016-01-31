@@ -11,6 +11,9 @@ public  class Frame extends JFrame{
 
   public void addPanel(JPanel p){
     p.setPreferredSize(new Dimension(700,700));
+    //color background
+    p.setBackground(new Color(200,200,200));
+    //add panel to frame
     c.add(p);
   }
 
