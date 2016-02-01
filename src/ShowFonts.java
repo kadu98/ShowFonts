@@ -1,10 +1,13 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.applet.Applet;
 import java.util.Arrays;
+import java.util.HashMap;
+
 
 public class ShowFonts extends JPanel implements ActionListener
 {
@@ -41,7 +44,6 @@ public class ShowFonts extends JPanel implements ActionListener
 		//create drop-down menu for bold/italics
 		fontStyle = new JComboBox<>();
 		//connect fontStyle drop down to "this" action listener (action listener in outer class)
-		fontStyle.addActionListener(this);
 		fontStyle.setBounds(199, 19, 103, 30);
 		add(fontStyle);
 		fontStyle.addItem("None");
@@ -58,12 +60,19 @@ public class ShowFonts extends JPanel implements ActionListener
 		//create drop-down menu for color
 		fontColor = new JComboBox<>();
 		fontColor.setBounds(350, 19, 141 ,30);
-		fontColor.addActionListener(this);
+		//adding colors
 		add(fontColor);
 		fontColor.addItem("Black");
 		fontColor.addItem("Red");
 		fontColor.addItem("Blue");
 		fontColor.addItem("Green");
+		fontColor.addItem("Yellow");
+		fontColor.addItem("Pink");
+		fontColor.addItem("White");
+		fontColor.addItem("Orange");
+		fontColor.addItem("Cyan");
+		fontColor.addItem("Gray");
+		fontColor.addItem("Magenta");
 		
 		//set array "fonts" to what function getfonts returns
 		String[] fonts=GetFonts();
@@ -75,14 +84,15 @@ public class ShowFonts extends JPanel implements ActionListener
 		}
 	}
 	
+	
 	//JD's method to get all fonts
 	public static String[] GetFonts()
 	{
       GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
       String[] names = ge.getAvailableFontFamilyNames();
-      for ( int i=0; i<names.length; i++ )
+      //for ( int i=0; i<names.length; i++ )
 	      {
-	           System.out.println( names[i] );
+	          // System.out.println( names[i] );
 	       }	    
       return names;
      }
@@ -127,16 +137,55 @@ public class ShowFonts extends JPanel implements ActionListener
 			output.setFont(font.deriveFont(Font.ITALIC));
 		}
 		}
-		if(event.getSource() == fontColor){
-			String whatColor = fontColor.getItemAt(fontColor.getSelectedIndex());
+		
+	
+		//add actionListener for color Dropdrown
+		fontColor.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent event) {
+			//defining rgb values for colors in the hashmap
+			int[] red = {255, 0, 0};
+			int[] blue = {0, 0, 255};
+			int[] black = {0, 0, 0};
+			int[] green = {0, 255, 0};
+			int[] white = {255, 255, 255};
+			int[] pink = {255, 192, 203};
+			int[] yellow = {255, 255, 0};
+			int[] magenta = {255, 0, 255};
+			int[] gray = {255, 255, 0};
+			int[] cyan = {0, 255, 255};
+			int[] orange = {255, 165, 0};
+			//create hashmap and put values in
+			HashMap<String, int[]> map = new HashMap<String, int[]>();
+			map.put("Red", red);
+			map.put("Blue", blue);
+			map.put("Black", black);
+			map.put("Green", green);
+			map.put("White", white);
+			map.put("Pink", pink);
+			map.put("Yellow", yellow);
+			map.put("Magenta", magenta);
+			map.put("Gray", gray);
+			map.put("Cyan", cyan);
+			map.put("Orange", orange);
 			
-			int a = 255;
-			int b = 0;
-			int c = 0;
-			
-			output.setForeground(new Color(a, b, c));
-			}
+			//when color dropdown clicked and color selected store clicked color in selected
+			//get the rgb value of selected from hashmap
+			JComboBox fontColor = (JComboBox) event.getSource();
+			Object selected = fontColor.getSelectedItem();
+			int[]rgb =  map.get(selected);
+			//assign variables to the rgb values of selected color
+			int x = rgb[0];
+			int y = rgb[1];
+			int z = rgb[2];
+			//set color of the text to selected color based on rgb values
+			output.setForeground(new Color(x, y, z));
 		}
-	}
+		});
+		
+		}
+			
+		}
+	
+	
 
 
