@@ -7,6 +7,7 @@ import javax.swing.border.TitledBorder;
 import java.applet.Applet;
 import java.util.Arrays;
 import java.util.HashMap;
+import javax.swing.border.EtchedBorder;
 
 
 public class ShowFonts extends JPanel implements ActionListener
@@ -17,18 +18,23 @@ public class ShowFonts extends JPanel implements ActionListener
 	JComboBox<String> fontFam;
 	static JComboBox<String> fontColor;
 	static JComboBox<String> bgColor;
+	private JTextField txtFontFamily;
+	private JTextField txtFontStyle;
+	private JTextField txtFontColor;
+	private JTextField txtBackgroundColor;
 	
 	public ShowFonts() 
 	{
+		setBackground(new Color(248, 248, 255));
 		//allows me to move components around
 		setLayout(null);
 		
 		//create text area, set location of text area in frame, display text
 		output = new JTextArea();
 		add(output);
-		output.setBounds(33, 74, 460, 337);
+		output.setBounds(33, 81, 460, 337);
 		//border
-		output.setBorder(new TitledBorder("Try out different fonts & colors"));
+		output.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Try out different fonts & colors", TitledBorder.LEADING, TitledBorder.ABOVE_BOTTOM, null, new Color(0, 0, 0)));
 		output.setText(
 				"The quick brown fox jumped over the lazy dog’s back. \n "
 				+ "Pack my box with five dozen liquor jugs. \n"
@@ -45,9 +51,11 @@ public class ShowFonts extends JPanel implements ActionListener
 		
 		//create drop-down menu for bold/italics
 		fontStyle = new JComboBox<>();
+		fontStyle.setBackground(new Color(248, 248, 255));
+		fontStyle.setForeground(new Color(0, 0, 0));
 		//connect fontStyle drop down to "this" action listener (action listener in outer class)
 		fontStyle.addActionListener(this);
-		fontStyle.setBounds(199, 19, 103, 30);
+		fontStyle.setBounds(178, 32, 103, 30);
 		add(fontStyle);
 		fontStyle.addItem("None");
 		fontStyle.addItem("Bold");
@@ -55,14 +63,18 @@ public class ShowFonts extends JPanel implements ActionListener
 		
 		//create drop-down menu for font families, set location in applet
 		fontFam = new JComboBox<>();
+		fontFam.setBackground(new Color(248, 248, 255));
+		fontFam.setForeground(new Color(0, 0, 0));
 		//connect fontfam drop down to "this" action listener
 		fontFam.addActionListener(this);
 		add(fontFam);
-		fontFam.setBounds(23, 19, 141, 30);
+		fontFam.setBounds(23, 32, 141, 30);
 		
 		//create drop-down menu for text color
 		fontColor = new JComboBox<>();
-		fontColor.setBounds(339, 6, 141 ,30);
+		fontColor.setBackground(new Color(248, 248, 255));
+		fontColor.setForeground(new Color(0, 0, 0));
+		fontColor.setBounds(307, 32, 132 ,30);
 		//adding colors
 		add(fontColor);
 		fontColor.addActionListener(this);
@@ -80,9 +92,47 @@ public class ShowFonts extends JPanel implements ActionListener
 		
 		//create drop-down menu for bg color
 		bgColor = new JComboBox<>();
-		bgColor.setBounds(339, 41, 105, 27);
+		bgColor.setBackground(new Color(248, 248, 255));
+		bgColor.setForeground(new Color(0, 0, 0));
+		bgColor.setBounds(460, 34, 132, 27);
 		bgColor.addActionListener(this);
 		add(bgColor);
+		
+		txtFontFamily = new JTextField();
+		txtFontFamily.setBackground(new Color(245, 255, 250));
+		txtFontFamily.setEditable(false);
+		txtFontFamily.setHorizontalAlignment(SwingConstants.CENTER);
+		txtFontFamily.setText("Font Family");
+		txtFontFamily.setBounds(23, 6, 103, 26);
+		add(txtFontFamily);
+		txtFontFamily.setColumns(10);
+		
+		txtFontStyle = new JTextField();
+		txtFontStyle.setBackground(new Color(245, 255, 250));
+		txtFontStyle.setEditable(false);
+		txtFontStyle.setText("Font Style\n");
+		txtFontStyle.setHorizontalAlignment(SwingConstants.CENTER);
+		txtFontStyle.setColumns(10);
+		txtFontStyle.setBounds(178, 6, 103, 26);
+		add(txtFontStyle);
+		
+		txtFontColor = new JTextField();
+		txtFontColor.setBackground(new Color(245, 255, 250));
+		txtFontColor.setEditable(false);
+		txtFontColor.setText("Font Color");
+		txtFontColor.setHorizontalAlignment(SwingConstants.CENTER);
+		txtFontColor.setColumns(10);
+		txtFontColor.setBounds(307, 6, 103, 26);
+		add(txtFontColor);
+		
+		txtBackgroundColor = new JTextField();
+		txtBackgroundColor.setBackground(new Color(245, 255, 250));
+		txtBackgroundColor.setEditable(false);
+		txtBackgroundColor.setText("Background Color");
+		txtBackgroundColor.setHorizontalAlignment(SwingConstants.CENTER);
+		txtBackgroundColor.setColumns(10);
+		txtBackgroundColor.setBounds(462, 6, 130, 26);
+		add(txtBackgroundColor);
 		bgColor.addItem("White");
 		bgColor.addItem("Red");
 		bgColor.addItem("Blue");
@@ -172,6 +222,7 @@ public class ShowFonts extends JPanel implements ActionListener
 		
 		}
 	
+	//function for text colors
 	private static void fcolors()
 	{
 		//defining rgb values for colors in the hashmap
@@ -186,6 +237,7 @@ public class ShowFonts extends JPanel implements ActionListener
 		int[] gray = {128,128,128};
 		int[] cyan = {0, 255, 255};
 		int[] orange = {255, 165, 0};
+		
 		//create hashmap and put values in
 		HashMap<String, int[]> map = new HashMap<String, int[]>();
 		map.put("Red", red);
@@ -210,7 +262,8 @@ public class ShowFonts extends JPanel implements ActionListener
 		output.setForeground(new Color(x,y,z));
 		
 	}
-	
+
+	//function for bg colors
 	private static void bcolors()
 	{
 		//defining rgb values for colors in the hashmap
@@ -240,12 +293,12 @@ public class ShowFonts extends JPanel implements ActionListener
 		map.put("Cyan", cyan);
 		map.put("Orange", orange);
 		
-	Object selected2 = bgColor.getSelectedItem();
-	int[]rgb2 =  map.get(selected2);
-	int a = rgb2[0];
-	int b = rgb2[1];
-	int c = rgb2[2];
-	output.setBackground(new Color(a,b,c));
+		Object selected2 = bgColor.getSelectedItem();
+		int[]rgb2 =  map.get(selected2);
+		int a = rgb2[0];
+		int b = rgb2[1];
+		int c = rgb2[2];
+		output.setBackground(new Color(a,b,c));
 	}
 }
 	
