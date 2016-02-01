@@ -12,11 +12,11 @@ import java.util.HashMap;
 public class ShowFonts extends JPanel implements ActionListener
 {
 	//creates field variables 
-	JTextArea output;
+	static JTextArea output;
 	JComboBox<String> fontStyle;
 	JComboBox<String> fontFam;
-	JComboBox<String> fontColor;
-	JComboBox<String> bgColor;
+	static JComboBox<String> fontColor;
+	static JComboBox<String> bgColor;
 	
 	public ShowFonts() 
 	{
@@ -46,7 +46,7 @@ public class ShowFonts extends JPanel implements ActionListener
 		//create drop-down menu for bold/italics
 		fontStyle = new JComboBox<>();
 		//connect fontStyle drop down to "this" action listener (action listener in outer class)
-		//fontStyle.addActionListener(this);
+		fontStyle.addActionListener(this);
 		fontStyle.setBounds(199, 19, 103, 30);
 		add(fontStyle);
 		fontStyle.addItem("None");
@@ -65,6 +65,7 @@ public class ShowFonts extends JPanel implements ActionListener
 		fontColor.setBounds(339, 6, 141 ,30);
 		//adding colors
 		add(fontColor);
+		fontColor.addActionListener(this);
 		fontColor.addItem("Black");
 		fontColor.addItem("Red");
 		fontColor.addItem("Blue");
@@ -80,14 +81,15 @@ public class ShowFonts extends JPanel implements ActionListener
 		//create drop-down menu for bg color
 		bgColor = new JComboBox<>();
 		bgColor.setBounds(339, 41, 105, 27);
+		bgColor.addActionListener(this);
 		add(bgColor);
-		bgColor.addItem("Black");
+		bgColor.addItem("White");
 		bgColor.addItem("Red");
 		bgColor.addItem("Blue");
 		bgColor.addItem("Green");
 		bgColor.addItem("Yellow");
 		bgColor.addItem("Pink");
-		bgColor.addItem("White");
+		bgColor.addItem("Black");
 		bgColor.addItem("Orange");
 		bgColor.addItem("Cyan");
 		bgColor.addItem("Gray");
@@ -118,10 +120,21 @@ public class ShowFonts extends JPanel implements ActionListener
 
 	@Override
 	//when an action is performed, the following will be triggered
+	
 	public void actionPerformed(ActionEvent event)
 	{
+		//color triggers action
+		if(event.getSource() == fontColor){
+			ShowFonts.fcolors();
+		}
+		
+		//bg color
+		if(event.getSource() == bgColor){
+			ShowFonts.bcolors();
+		}
+			
 		//if the object that triggers the action is fontFam/if fontFam performs the action
-		if(event.getSource() == fontFam){
+			if(event.getSource() == fontFam){
 			//gets the item at the selected item
 			String fontName = fontFam.getItemAt(fontFam.getSelectedIndex());
 			//get the current font of the JTextArea output, then get the style of the current font 
@@ -157,69 +170,84 @@ public class ShowFonts extends JPanel implements ActionListener
 		}
 		}
 		
+		}
 	
-		//add actionListener for color Dropdrown
-		fontColor.addActionListener(new ActionListener(){
-		public void actionPerformed(ActionEvent e) {
-			//defining rgb values for colors in the hashmap
-			int[] red = {255, 0, 0};
-			int[] blue = {0, 0, 255};
-			int[] black = {0, 0, 0};
-			int[] green = {0, 255, 0};
-			int[] white = {255, 255, 255};
-			int[] pink = {255, 192, 203};
-			int[] yellow = {255, 255, 0};
-			int[] magenta = {255, 0, 255};
-			int[] gray = {255, 255, 0};
-			int[] cyan = {0, 255, 255};
-			int[] orange = {255, 165, 0};
-			//create hashmap and put values in
-			HashMap<String, int[]> map = new HashMap<String, int[]>();
-			map.put("Red", red);
-			map.put("Blue", blue);
-			map.put("Black", black);
-			map.put("Green", green);
-			map.put("White", white);
-			map.put("Pink", pink);
-			map.put("Yellow", yellow);
-			map.put("Magenta", magenta);
-			map.put("Gray", gray);
-			map.put("Cyan", cyan);
-			map.put("Orange", orange);
-			
-			//when color dropdown clicked and color selected store clicked color in selected
-			//get the rgb value of selected from hashmap
-			if(e.getSource() == fontColor)
-			{
-			JComboBox fontColor = (JComboBox) e.getSource();
-			Object selected = fontColor.getSelectedItem();
-			int[]rgb =  map.get(selected);
-			//assign variables to the rgb values of selected color
-			int x = rgb[0];
-			int y = rgb[1];
-			int z = rgb[2];
-			//set color of the text to selected color based on rgb values
-			output.setForeground(new Color(x, y, z));
-			//output.setBackground(new Color(x, y, z));
-			}
-			
-			if(e.getSource() == bgColor)
-			{
-			JComboBox bgColor = (JComboBox) e.getSource();
-			Object selected = bgColor.getSelectedItem();
-			int[]rgb =  map.get(selected);
-			//assign variables to the rgb values of selected color
-			int a = rgb[0];
-			int b = rgb[1];
-			int c = rgb[2];
-			//set color of the text to selected color based on rgb values
-			output.setBackground(new Color(a, b, c));
-			}
-		}
-		});
+	private static void fcolors()
+	{
+		//defining rgb values for colors in the hashmap
+		int[] red = {255, 0, 0};
+		int[] blue = {0, 0, 255};
+		int[] black = {0, 0, 0};
+		int[] green = {0, 255, 0};
+		int[] white = {255, 255, 255};
+		int[] pink = {255, 192, 203};
+		int[] yellow = {255, 255, 0};
+		int[] magenta = {255, 0, 255};
+		int[] gray = {128,128,128};
+		int[] cyan = {0, 255, 255};
+		int[] orange = {255, 165, 0};
+		//create hashmap and put values in
+		HashMap<String, int[]> map = new HashMap<String, int[]>();
+		map.put("Red", red);
+		map.put("Blue", blue);
+		map.put("Black", black);
+		map.put("Green", green);
+		map.put("White", white);
+		map.put("Pink", pink);
+		map.put("Yellow", yellow);
+		map.put("Magenta", magenta);
+		map.put("Gray", gray);
+		map.put("Cyan", cyan);
+		map.put("Orange", orange);
 		
-		}
-		}
+		//when color dropdown clicked and color selected store clicked color in selected
+		//get the rgb value of selected from hashmap
+		Object selected = fontColor.getSelectedItem();
+		int[]rgb =  map.get(selected);
+		int x = rgb[0];
+		int y = rgb[1];
+		int z = rgb[2];
+		output.setForeground(new Color(x,y,z));
+		
+	}
+	
+	private static void bcolors()
+	{
+		//defining rgb values for colors in the hashmap
+		int[] red = {255, 0, 0};
+		int[] blue = {0, 0, 255};
+		int[] black = {0, 0, 0};
+		int[] green = {0, 255, 0};
+		int[] white = {255, 255, 255};
+		int[] pink = {255, 192, 203};
+		int[] yellow = {255, 255, 0};
+		int[] magenta = {255, 0, 255};
+		int[] gray = {125, 125, 125};
+		int[] cyan = {0, 255, 255};
+		int[] orange = {255, 165, 0};
+		
+		//create hashmap and put values in
+		HashMap<String, int[]> map = new HashMap<String, int[]>();
+		map.put("Red", red);
+		map.put("Blue", blue);
+		map.put("Black", black);
+		map.put("Green", green);
+		map.put("White", white);
+		map.put("Pink", pink);
+		map.put("Yellow", yellow);
+		map.put("Magenta", magenta);
+		map.put("Gray", gray);
+		map.put("Cyan", cyan);
+		map.put("Orange", orange);
+		
+	Object selected2 = bgColor.getSelectedItem();
+	int[]rgb2 =  map.get(selected2);
+	int a = rgb2[0];
+	int b = rgb2[1];
+	int c = rgb2[2];
+	output.setBackground(new Color(a,b,c));
+	}
+}
 	
 	
 
