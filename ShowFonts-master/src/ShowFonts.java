@@ -200,6 +200,20 @@ public class ShowFonts extends JPanel implements ActionListener
 			int z = rgb[2];
 			//set color of the text to selected color based on rgb values
 			output.setForeground(new Color(x, y, z));
+			//output.setBackground(new Color(x, y, z));
+			}
+			
+			if(e.getSource() == bgColor)
+			{
+			JComboBox bgColor = (JComboBox) e.getSource();
+			Object selected = bgColor.getSelectedItem();
+			int[]rgb =  map.get(selected);
+			//assign variables to the rgb values of selected color
+			int a = rgb[0];
+			int b = rgb[1];
+			int c = rgb[2];
+			//set color of the text to selected color based on rgb values
+			output.setBackground(new Color(a, b, c));
 			}
 		}
 		});
