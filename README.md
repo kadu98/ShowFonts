@@ -2,6 +2,8 @@
 Note: I had to solve the conflict merging issue by I think overriding local files. So the folder with all the correct/most up to date files 
 is the ShowFonts-Master folder.
 
+Here are the instructions for this project:
+
 Your program is an Applet that lets you choose:
 
 font family
