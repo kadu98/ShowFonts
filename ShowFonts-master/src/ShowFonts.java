@@ -46,6 +46,7 @@ public class ShowFonts extends JPanel implements ActionListener
 		//create drop-down menu for bold/italics
 		fontStyle = new JComboBox<>();
 		//connect fontStyle drop down to "this" action listener (action listener in outer class)
+		//fontStyle.addActionListener(this);
 		fontStyle.setBounds(199, 19, 103, 30);
 		add(fontStyle);
 		fontStyle.addItem("None");
@@ -159,7 +160,7 @@ public class ShowFonts extends JPanel implements ActionListener
 	
 		//add actionListener for color Dropdrown
 		fontColor.addActionListener(new ActionListener(){
-		public void actionPerformed(ActionEvent event) {
+		public void actionPerformed(ActionEvent e) {
 			//defining rgb values for colors in the hashmap
 			int[] red = {255, 0, 0};
 			int[] blue = {0, 0, 255};
@@ -188,7 +189,9 @@ public class ShowFonts extends JPanel implements ActionListener
 			
 			//when color dropdown clicked and color selected store clicked color in selected
 			//get the rgb value of selected from hashmap
-			JComboBox fontColor = (JComboBox) event.getSource();
+			if(e.getSource() == fontColor)
+			{
+			JComboBox fontColor = (JComboBox) e.getSource();
 			Object selected = fontColor.getSelectedItem();
 			int[]rgb =  map.get(selected);
 			//assign variables to the rgb values of selected color
@@ -197,6 +200,7 @@ public class ShowFonts extends JPanel implements ActionListener
 			int z = rgb[2];
 			//set color of the text to selected color based on rgb values
 			output.setForeground(new Color(x, y, z));
+			}
 		}
 		});
 		
