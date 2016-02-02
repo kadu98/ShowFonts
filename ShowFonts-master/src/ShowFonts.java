@@ -32,7 +32,7 @@ public class ShowFonts extends JPanel implements ActionListener
 		//create text area, set location of text area in frame, display text
 		output = new JTextArea();
 		add(output);
-		output.setBounds(33, 81, 460, 337);
+		output.setBounds(90, 150, 500, 400);
 		//border
 		output.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Try out different fonts & colors", TitledBorder.LEADING, TitledBorder.ABOVE_BOTTOM, null, new Color(0, 0, 0)));
 		output.setText(
